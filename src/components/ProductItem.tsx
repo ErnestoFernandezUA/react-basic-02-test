@@ -75,42 +75,39 @@ export class ProductItem extends React.Component<Props, State> {
             </p>
           )
           : '' }
-
-        {/* <p className="ProductItem__id">
-          Код товару:
-          &nbsp;
-          {id}
-        </p> */}
-        <br />
         <img
           className="ProductItem__picture"
           src="../data/img/1.jpg"
           alt={picturePath}
         />
-        <br />
-        <p className="ProductItem__discount">
-          {`-${discount}%`}
-        </p>
 
-        <p className="ProductItem__action">{action}</p>
-        <br />
+        <div className="ProductItem__box-for-discount">
+          <p className="ProductItem__discount">
+            {`-${discount}%`}
+          </p>
+
+          <p className="ProductItem__action">{action}</p>
+
+        </div>
         <p className="ProductItem__description">{description}</p>
-        <br />
+
         <p className="ProductItem__title">{title}</p>
-        <br />
-        <br />
+
         <p className="ProductItem__review">
           {`${reviewStarCount} відгуків`}
         </p>
-        <br />
+
         <p className="ProductItem__price-title">Ціна:</p>
-        <br />
-        <p className="ProductItem__price">
-          {`${this.toSeparatePrice(price)} грн`}
-        </p>
-        <p className="ProductItem__cashback">{`+ ${cashback} грн кешбек`}</p>
-        <br />
+
+        <div className="ProductItem__box-for-price">
+          <p className="ProductItem__price">
+            {`${this.toSeparatePrice(price)} грн`}
+          </p>
+          <p className="ProductItem__cashback">{`+ ${cashback} грн кешбек`}</p>
+        </div>
         <p className="ProductItem__prevPrice">{`${this.toSeparatePrice(prevPrice)}грн`}</p>
+
+        <p className="ProductItem__button-buy">Купити</p>
       </a>
     );
   }

@@ -3,6 +3,7 @@
 .ProductItem {
   // border: 1px solid grey;
   display: block;
+  position: relative;
   background-color: #fff;
   width: 280px;
   height: 500px;
@@ -18,20 +19,33 @@
   }
 
   &__id {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+
     color: $id-color;
     font-size: 12px;
-    display: inline-block;
+    display: block;
     padding: 0;
     margin: 0;
   }
 
   &__picture {
-    width: 120px;
-    height: 150px;
+    position: absolute;
+    top: 50px;
+    left: 40px;
+    width: 200px;
+    height: 200px;
     display: block;
     margin: 0;
     padding: 0;
     border: 1px solid red;
+  }
+
+  &__box-for-discount {
+    position: absolute;
+    top: 250px;
+    left: 10px;
   }
 
   &__discount {
@@ -59,36 +73,59 @@
   }
 
   &__description {
+    position: absolute;
+    top: 290px;
+    left: 10px;
+
     color: $description-color;
     font-size: 13px;
     padding: 0;
     margin: 0;
     letter-spacing: 0.01;
-    border: 1px solid red;
+    // border: 1px solid red;
   }
 
   &__title {
+    position: absolute;
+    top: 315px;
+    left: 10px;
+
     color: $title-color;
     // font-weight: bold;
     tab-size: 20px;
     padding: 0;
     margin: 0;
-    border: 1px solid red;
+    // border: 1px solid red;
   }
 
   &__review {
+    position: absolute;
+    top: 370px;
+    left: 10px;
+
     display: inline-block;
     padding: 0;
     margin: 0;
     color: $review-color;
-    border: 1px solid red;
+    // border: 1px solid red;
+    font-size: 14px;
   }
 
   &__price-title {
+    position: absolute;
+    top: 385px;
+    left: 10px;
+
     display: inline-block;
     color: $prevPrice-color;
     font-size: 12px;
-    border: 1px solid red;
+    // border: 1px solid red;
+  }
+
+  &__box-for-price {
+    position: absolute;
+    top: 405px;
+    left: 10px;
   }
 
   &__price {
@@ -111,9 +148,18 @@
   }
 
   &__prevPrice {
+    position: absolute;
+    top: 435px;
+    left: 10px;
+
     padding: 0;
     margin: 0;
     text-decoration: line-through;
     color: $prevPrice-color;
+    font-size: 16px;
+  }
+
+  &__button-buy {
+    
   }
 }
