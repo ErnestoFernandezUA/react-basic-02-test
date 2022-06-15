@@ -113,8 +113,7 @@ export class ProductItem extends React.Component<Props, State> {
         </p>
         <p className="ProductItem__cashback">{`+ ${cashback} грн кешбек`}</p>
         <br />
-        {prevPrice}
-        {this.state.onfocus ? 'купити' : ''}
+        <p className="ProductItem__prevPrice">{`${this.toSeparatePrice(prevPrice)}грн`}</p>
       </a>
     );
   }
