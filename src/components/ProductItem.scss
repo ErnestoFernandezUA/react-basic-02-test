@@ -1,0 +1,98 @@
+@import './variables.scss';
+
+.ProductItem {
+  // border: 1px solid grey;
+  display: block;
+  background-color: #fff;
+  width: 280px;
+  height: 500px;
+  margin: 4px;
+  padding: 10px;
+  box-sizing: border-box;
+  border-radius: 4px;
+  text-decoration: none;
+
+  &:hover {
+    cursor: pointer;
+    height: 560px;
+  }
+
+  &__id {
+    color: $id-color;
+    font-size: 12px;
+  }
+
+  &__picture {
+    width: 100px;
+    height: 100px;
+  }
+
+  &__discount {
+    display: inline-block;
+    border-radius: 2px;
+    width: fit-content;
+    padding: 2px 7px;
+    font-size: 12px;
+    font-weight: bold;
+    color: white;
+    background-color: $discount-color;
+  }
+
+  &__action {
+    display: inline-block;
+    border-radius: 2px;
+    width: fit-content;
+    padding: 2px 7px;
+    margin: 0 0 0 4px;
+    font-size: 12px;
+    text-transform: uppercase;
+    color: white;
+    background-color: $action-color;
+    border-radius: 2px;
+  }
+
+  &__description {
+    color: $description-color;
+    font-size: 13px;
+    padding: 0;
+    margin: 0;
+    letter-spacing: 0.01;
+  }
+
+  &__title {
+    color: $title-color;
+    // font-weight: bold;
+    tab-size: 20px;
+    padding: 0;
+    margin: 0;
+    // border: 1px solid red;
+  }
+
+  &__review {
+    color: $review-color;
+  }
+
+  &__price-title {
+    color: $prevPrice-color;
+    font-size: 12px;
+  }
+
+  &__price {
+    display: inline;
+    color: $price-color;
+    font-weight: bold;
+    font-style: 20px;
+  }
+
+  &__cashback {
+    display: inline-block;
+    width: fit-content;
+    padding: 1px 3px;
+    margin-left: 10px;
+    font-size: 12px;
+    font-weight: bold;
+    color: black;
+    background-color: $cashback-background-color;
+    border-radius: 2px;
+  }
+}
