@@ -100,23 +100,25 @@ export class ProductItem extends React.Component<Props, State> {
         onMouseEnter={() => this.setState({ hover: true })}
         onMouseLeave={() => this.setState({ hover: false })}
       >
-        {this.state.hover
-          ? (
-            <p className="ProductItem__id">
-              Код товару:
-              &nbsp;
-              {id}
-            </p>
-          )
-          : null }
+        <p
+          className={classNames(
+            'ProductItem__id',
+            { 'ProductItem__id--hover': this.state.hover },
+          )}
+        >
+          Код товару:
+          &nbsp;
+          {id}
+        </p>
 
-        <div
+        <img
           className={classNames(
             'ProductItem__picture',
             { 'ProductItem__picture--hover': this.state.hover },
           )}
-        >
-        </div>
+          src="../data/img/pic1.jpg"
+          alt={picture}
+        />
 
         <div
           className={classNames(
@@ -139,13 +141,14 @@ export class ProductItem extends React.Component<Props, State> {
 
         </div>
 
-        {!this.state.hover
-          ? (
-            <p className="ProductItem__description">
-              {description}
-            </p>
-          )
-          : null }
+        <p
+          className={classNames(
+            'ProductItem__description',
+            { 'ProductItem__description--hover': this.state.hover },
+          )}
+        >
+          {description}
+        </p>
 
         <p className="ProductItem__title">
           {title}
@@ -176,6 +179,16 @@ export class ProductItem extends React.Component<Props, State> {
         >
           Купити
         </p>
+
+        <div
+          className={classNames(
+            'ProductItem__select',
+            { 'ProductItem__select--hover': this.state.hover },
+          )}
+          style={{
+            backgroundImage: '../data/img/scales.png',
+          }}
+        />
       </div>
     );
   }
