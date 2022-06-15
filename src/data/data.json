@@ -1,7 +1,7 @@
 [
   { 
     "id": 488795,
-    "picture": "1.png",
+    "picture": "https://i.imgur.com/VT4SlvI.png",
     "discount": 14,
     "action": "найкраща ціна",
     "description": "Для справжніх поціновувачів вина...",
@@ -13,7 +13,7 @@
   },
   {
     "id": 488796,
-    "picture": "2.jpg",
+    "picture": "https://i.imgur.com/f1Wb1IV.jpg",
     "discount": 24,
     "action": "хіт",
     "description": "some description",
@@ -25,7 +25,7 @@
   },
   { 
     "id": 488797,
-    "picture": "3.jpg",
+    "picture": "https://i.imgur.com/C2HuGlx.jpg",
     "discount": 18,
     "action": "хіт",
     "description": "Знижки до 26% на пилоcоси Thomas + ...",

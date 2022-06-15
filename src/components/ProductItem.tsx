@@ -123,8 +123,9 @@ export class ProductItem extends React.Component<Props, State> {
             'ProductItem__picture',
             { 'ProductItem__picture--hover': this.state.hover },
           )}
-          src="../data/img/pic1.jpg"
-          alt={picture}
+          // eslint-disable-next-line global-require
+          src={picture}
+          alt={picturePath}
         />
 
         <div
@@ -187,14 +188,13 @@ export class ProductItem extends React.Component<Props, State> {
           Купити
         </p>
 
-        <div
+        <img
+          src="https://i.imgur.com/JTPIddu.png?1"
+          alt="heart"
           className={classNames(
             'ProductItem__select',
             { 'ProductItem__select--hover': this.state.hover },
           )}
-          style={{
-            backgroundImage: '../data/img/scales.png',
-          }}
         />
       </div>
     );
