@@ -89,7 +89,14 @@ export class ProductItem extends React.Component<Props, State> {
           <p className="ProductItem__action">{action}</p>
 
         </div>
-        <p className="ProductItem__description">{description}</p>
+
+        {!this.state.hover
+          ? (
+            <p className="ProductItem__description">
+              {description}
+            </p>
+          )
+          : null }
 
         <p className="ProductItem__title">{title}</p>
 
@@ -107,7 +114,13 @@ export class ProductItem extends React.Component<Props, State> {
         </div>
         <p className="ProductItem__prevPrice">{`${this.toSeparatePrice(prevPrice)}грн`}</p>
 
-        <p className="ProductItem__button-buy">Купити</p>
+        {this.state.hover
+          ? (
+            <p className="ProductItem__button-buy">
+              Купити
+            </p>
+          )
+          : null }
       </a>
     );
   }
