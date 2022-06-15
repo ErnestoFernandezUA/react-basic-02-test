@@ -41,18 +41,22 @@ export class ProductList extends React.Component<Props, State> {
                 <li
                   key={product.id}
                 >
-                  <ProductItem
-                    id={id}
-                    picture={picture}
-                    discount={discount}
-                    action={action}
-                    description={description}
-                    title={title}
-                    review={review}
-                    price={price}
-                    cashback={cashback}
-                    prevPrice={prevPrice}
-                  />
+                  <a
+                    href="https://www.google.com"
+                  >
+                    <ProductItem
+                      id={id}
+                      picture={picture}
+                      discount={discount}
+                      action={action}
+                      description={description}
+                      title={title}
+                      review={review}
+                      price={price}
+                      cashback={cashback}
+                      prevPrice={prevPrice}
+                    />
+                  </a>
                 </li>
               );
             })}

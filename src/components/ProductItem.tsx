@@ -15,16 +15,12 @@ type Props = {
 };
 
 type State = {
-  onfocus: boolean;
+  hover: boolean;
 };
 
 export class ProductItem extends React.Component<Props, State> {
   state = {
-    onfocus: false,
-  };
-
-  onFocus = () => {
-    this.setState({ onfocus: true });
+    hover: false,
   };
 
   toSeparatePrice = (price: Number) => {
@@ -65,11 +61,12 @@ export class ProductItem extends React.Component<Props, State> {
 
     return (
       <a
-        onFocus={this.onFocus}
         href="https://www.google.com"
         className="ProductItem"
+        onMouseEnter={() => this.setState({ hover: true })}
+        onMouseLeave={() => this.setState({ hover: false })}
       >
-        {!this.state.onfocus
+        {this.state.hover
           ? (
             <p className="ProductItem__id">
               Код товару:
