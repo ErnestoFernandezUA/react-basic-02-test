@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import React from 'react';
 import './ProductItem.scss';
 
@@ -40,6 +41,37 @@ export class ProductItem extends React.Component<Props, State> {
     return result.split('').reverse().join('').trim();
   };
 
+  reviewText = (review: number[]) => {
+    // eslint-disable-next-line no-console
+    console.log('review = ', review.length);
+
+    if (review.length === 0) {
+      return 'немає відгуків';
+    }
+
+    const lastNumber: string = review.length.toString().slice(-1);
+
+    // eslint-disable-next-line no-console
+    console.log('lastNumber = ', lastNumber, typeof (lastNumber));
+
+    switch (lastNumber) {
+      case '1':
+        return `${review.length} відгук`;
+        break;
+
+      case '2' || '3' || '4':
+        return `${review.length} відгука`;
+        break;
+
+      case '5' || '6' || '7' || '8' || '9' || '0':
+        return `${review.length} відгуків`;
+        break;
+
+      default:
+        return 'немає 123 відгуків';
+    }
+  };
+
   render() {
     const {
       id,
@@ -56,12 +88,14 @@ export class ProductItem extends React.Component<Props, State> {
 
     const picturePath = `../data/img/${picture}`;
 
-    const reviewStarCount
-      = Math.floor(review.reduce((a, b) => a + b, 0) / review.length);
+    // eslint-disable-next-line no-console
+    console.log(picturePath);
+
+    // const reviewStarCount
+    //   = Math.floor(review.reduce((a, b) => a + b, 0) / review.length);
 
     return (
-      <a
-        href="https://www.google.com"
+      <div
         className="ProductItem"
         onMouseEnter={() => this.setState({ hover: true })}
         onMouseLeave={() => this.setState({ hover: false })}
@@ -74,19 +108,34 @@ export class ProductItem extends React.Component<Props, State> {
               {id}
             </p>
           )
-          : '' }
-        <img
-          className="ProductItem__picture"
-          src="../data/img/1.jpg"
-          alt={picturePath}
-        />
+          : null }
 
-        <div className="ProductItem__box-for-discount">
+        <div
+          className={classNames(
+            'ProductItem__picture',
+            { 'ProductItem__picture--hover': this.state.hover },
+          )}
+        >
+        </div>
+
+        <div
+          className={classNames(
+            'ProductItem__box-for-discount',
+            { 'ProductItem__box-for-discount--hover': this.state.hover },
+          )}
+        >
           <p className="ProductItem__discount">
             {`-${discount}%`}
           </p>
 
-          <p className="ProductItem__action">{action}</p>
+          <p className={classNames(
+            'ProductItem__action',
+            { 'ProductItem__action--best-price': action === 'найкраща ціна' },
+            { 'ProductItem__action--hit': action === 'хіт' },
+          )}
+          >
+            {action}
+          </p>
 
         </div>
 
@@ -98,10 +147,12 @@ export class ProductItem extends React.Component<Props, State> {
           )
           : null }
 
-        <p className="ProductItem__title">{title}</p>
+        <p className="ProductItem__title">
+          {title}
+        </p>
 
         <p className="ProductItem__review">
-          {`${reviewStarCount} відгуків`}
+          {this.reviewText(review)}
         </p>
 
         <p className="ProductItem__price-title">Ціна:</p>
@@ -112,16 +163,20 @@ export class ProductItem extends React.Component<Props, State> {
           </p>
           <p className="ProductItem__cashback">{`+ ${cashback} грн кешбек`}</p>
         </div>
-        <p className="ProductItem__prevPrice">{`${this.toSeparatePrice(prevPrice)}грн`}</p>
 
-        {this.state.hover
-          ? (
-            <p className="ProductItem__button-buy">
-              Купити
-            </p>
-          )
-          : null }
-      </a>
+        <p className="ProductItem__prevPrice">
+          {`${this.toSeparatePrice(prevPrice)}грн`}
+        </p>
+
+        <p
+          className={classNames(
+            'ProductItem__button-buy',
+            { 'ProductItem__button-buy--hover': this.state.hover },
+          )}
+        >
+          Купити
+        </p>
+      </div>
     );
   }
 }

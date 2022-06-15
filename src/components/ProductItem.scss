@@ -6,21 +6,24 @@
   position: relative;
   background-color: #fff;
   width: 280px;
-  height: 500px;
-  margin: 4px;
+  height: 470px;
+  margin: 8px 4px;
   padding: 10px;
   box-sizing: border-box;
   border-radius: 5px;
   text-decoration: none;
+  box-shadow: 10px;
+  transition: 0.1s;
+  font-family: roboto, sans-serif;
 
   &:hover {
     cursor: pointer;
-    height: 560px;
+    height: 518px;
   }
 
   &__id {
     position: absolute;
-    top: 10px;
+    top: 7px;
     right: 10px;
 
     color: $id-color;
@@ -32,7 +35,8 @@
 
   &__picture {
     position: absolute;
-    top: 50px;
+    // background-image: url('../data/img/pic1.jpg');
+    top: 45px;
     left: 40px;
     width: 200px;
     height: 200px;
@@ -40,12 +44,22 @@
     margin: 0;
     padding: 0;
     border: 1px solid red;
+
+    &--hover { 
+      left: 27px;
+      width: 220px;
+      height: 220px;
+    }
   }
 
   &__box-for-discount {
     position: absolute;
     top: 250px;
     left: 10px;
+
+    &--hover {
+      top: 272px;
+    }
   }
 
   &__discount {
@@ -53,6 +67,7 @@
     border-radius: 2px;
     width: fit-content;
     padding: 2px 7px;
+    line-height: 15px;
     font-size: 12px;
     font-weight: bold;
     color: white;
@@ -66,15 +81,23 @@
     padding: 2px 7px;
     margin: 0 5px 0 4px;
     font-size: 12px;
+    font-weight: bold;
     text-transform: uppercase;
     color: white;
-    background-color: $action-color;
     border-radius: 2px;
+    
+    &--best-price {
+      background-color: $action-color;
+    }
+
+    &--hit {
+      background-color: $discount-color;
+    }
   }
 
   &__description {
     position: absolute;
-    top: 290px;
+    top: 287px;
     left: 10px;
 
     color: $description-color;
@@ -82,25 +105,24 @@
     padding: 0;
     margin: 0;
     letter-spacing: 0.01;
-    // border: 1px solid red;
   }
 
   &__title {
     position: absolute;
-    top: 315px;
+    top: 310px;
     left: 10px;
 
     color: $title-color;
-    // font-weight: bold;
+    font-size: 16px;
+    font-weight: 500;
     tab-size: 20px;
     padding: 0;
     margin: 0;
-    // border: 1px solid red;
   }
 
   &__review {
     position: absolute;
-    top: 370px;
+    top: 360px;
     left: 10px;
 
     display: inline-block;
@@ -118,13 +140,12 @@
 
     display: inline-block;
     color: $prevPrice-color;
-    font-size: 12px;
-    // border: 1px solid red;
+    font-size: 10px;
   }
 
   &__box-for-price {
     position: absolute;
-    top: 405px;
+    top: 402px;
     left: 10px;
   }
 
@@ -160,17 +181,22 @@
   }
 
   &__button-buy {
+    display: none;
     position: absolute;
-    top: 490px;
-    left: 20px;
+    top: 455px;
+    left: 15px;
     color: white;
     background-color: $button-color;
     width: fit-content;
-    padding: 0 40px;
+    padding: 0 53px;
     line-height: 40px;
     border-radius: 40px;
     font-weight: bold;
     font-size: 15px;
+    transition: 1s;
 
+    &--hover {
+      display: block;
+    }
   }
 }
