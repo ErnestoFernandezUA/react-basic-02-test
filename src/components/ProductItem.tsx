@@ -25,58 +25,40 @@ export class ProductItem extends React.Component<Props, State> {
   };
 
   toSeparatePrice = (price: Number) => {
-    const reversed = price.toString().split('').reverse();
+    // const reversed = price.toString().split('').reverse();
+    const reversed = price.toString();
+    const lengthOfReversed = reversed.length;
     let result = '';
 
     // eslint-disable-next-line no-plusplus
-    for (let i = 0; i < reversed.length; i++) {
+    for (let i = 0; i <= lengthOfReversed - 1; i++) {
       // eslint-disable-next-line no-mixed-operators
-      if (i % 3 === 0) {
+      if (i % 3 === 0 && i <= lengthOfReversed - 1 && i > 0) {
         result += ' ';
       }
 
-      result += reversed[i];
+      result += reversed[lengthOfReversed - 1 - i];
     }
 
-    return result.split('').reverse().join('').trim();
+    return result.split('').reverse().join('');
   };
 
-  reviewText = (review: number[]) => {
-    // eslint-disable-next-line no-console
-    console.log('review = ', review.length);
-
-    if (review.length === 0) {
+  reviewText = (review: number) => {
+    if (review === 0) {
       return 'немає відгуків';
     }
 
-    const lastNumber: string = review.length.toString().slice(-1);
+    const N = review % 100;
 
-    // eslint-disable-next-line no-console
-    console.log('lastNumber = ', lastNumber, typeof (lastNumber));
-
-    switch (lastNumber) {
-      case '1':
-        return `${review.length} відгук`;
-        break;
-
-      case '2':
-      case '3':
-      case '4':
-        return `${review.length} відгука`;
-        break;
-
-      case '5':
-      case '6':
-      case '7':
-      case '8':
-      case '9':
-      case '0':
-        return `${review.length} відгуків`;
-        break;
-
-      default:
-        return 'немає 123 відгуків';
+    if (N % 10 === 1 && N !== 11) {
+      return `${review} відгук`;
     }
+
+    if (N % 10 === 2 || N % 10 === 3 || N % 10 === 4) {
+      return `${review} немає відгука`;
+    }
+
+    return `${review} відгуків`;
   };
 
   render() {
@@ -163,7 +145,7 @@ export class ProductItem extends React.Component<Props, State> {
         </p>
 
         <p className="ProductItem__review">
-          {this.reviewText(review)}
+          {this.reviewText(review.length)}
         </p>
 
         <p className="ProductItem__price-title">Ціна:</p>
@@ -171,6 +153,7 @@ export class ProductItem extends React.Component<Props, State> {
         <div className="ProductItem__box-for-price">
           <p className="ProductItem__price">
             {`${this.toSeparatePrice(price)} грн`}
+            {price}
           </p>
           <p className="ProductItem__cashback">{`+ ${cashback} грн кешбек`}</p>
         </div>
@@ -189,7 +172,7 @@ export class ProductItem extends React.Component<Props, State> {
         </p>
 
         <img
-          src="https://i.imgur.com/JTPIddu.png?1"
+          src="https://imgur.com/H4mv702"
           alt="heart"
           className={classNames(
             'ProductItem__select',
