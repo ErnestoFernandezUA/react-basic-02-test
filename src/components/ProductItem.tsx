@@ -16,12 +16,16 @@ type Props = {
 };
 
 type State = {
-  hover: boolean;
+  isHoverProductItem: boolean;
+  isSelectProductItem: boolean;
+  isCompareProductItem: boolean;
 };
 
 export class ProductItem extends React.Component<Props, State> {
   state = {
-    hover: false,
+    isHoverProductItem: false,
+    isSelectProductItem: false,
+    isCompareProductItem: false,
   };
 
   toSeparatePrice = (price: Number) => {
@@ -61,6 +65,28 @@ export class ProductItem extends React.Component<Props, State> {
     return `${review} відгуків`;
   };
 
+  changeStatusHandler1 = () => {
+    this.setState(prevState => (
+      { isSelectProductItem: !prevState.isSelectProductItem }
+    ));
+  };
+
+  changeStatusHandler2 = () => {
+    this.setState(prevState => (
+      { isCompareProductItem: !prevState.isCompareProductItem }
+    ));
+  };
+
+  // changeStatusHandler3 = (event: React.MouseEvent, id: string) => {
+  //   // eslint-disable-next-line no-console
+  //   console.log(event.target);
+
+  //   this.setState(prevState => ({
+  //     ...prevState,
+  //     [id]: !prevState[id],
+  //   }));
+  // };
+
   render() {
     const {
       id,
@@ -75,7 +101,7 @@ export class ProductItem extends React.Component<Props, State> {
       prevPrice,
     } = this.props;
 
-    const picturePath = `../data/img/${picture}`;
+    const picturePath = `${picture}`;
 
     // eslint-disable-next-line no-console
     console.log(picturePath);
@@ -86,13 +112,13 @@ export class ProductItem extends React.Component<Props, State> {
     return (
       <div
         className="ProductItem"
-        onMouseEnter={() => this.setState({ hover: true })}
-        onMouseLeave={() => this.setState({ hover: false })}
+        onMouseEnter={() => this.setState({ isHoverProductItem: true })}
+        onMouseLeave={() => this.setState({ isHoverProductItem: false })}
       >
         <p
           className={classNames(
             'ProductItem__id',
-            { 'ProductItem__id--hover': this.state.hover },
+            { 'ProductItem__id--hover': this.state.isHoverProductItem },
           )}
         >
           Код товару:
@@ -103,7 +129,7 @@ export class ProductItem extends React.Component<Props, State> {
         <img
           className={classNames(
             'ProductItem__picture',
-            { 'ProductItem__picture--hover': this.state.hover },
+            { 'ProductItem__picture--hover': this.state.isHoverProductItem },
           )}
           // eslint-disable-next-line global-require
           src={picture}
@@ -113,7 +139,7 @@ export class ProductItem extends React.Component<Props, State> {
         <div
           className={classNames(
             'ProductItem__box-for-discount',
-            { 'ProductItem__box-for-discount--hover': this.state.hover },
+            { 'ProductItem__box-for-discount--hover': this.state.isHoverProductItem },
           )}
         >
           <p className="ProductItem__discount">
@@ -134,7 +160,7 @@ export class ProductItem extends React.Component<Props, State> {
         <p
           className={classNames(
             'ProductItem__description',
-            { 'ProductItem__description--hover': this.state.hover },
+            { 'ProductItem__description--hover': this.state.isHoverProductItem },
           )}
         >
           {description}
@@ -153,7 +179,6 @@ export class ProductItem extends React.Component<Props, State> {
         <div className="ProductItem__box-for-price">
           <p className="ProductItem__price">
             {`${this.toSeparatePrice(price)} грн`}
-            {price}
           </p>
           <p className="ProductItem__cashback">{`+ ${cashback} грн кешбек`}</p>
         </div>
@@ -162,24 +187,61 @@ export class ProductItem extends React.Component<Props, State> {
           {`${this.toSeparatePrice(prevPrice)}грн`}
         </p>
 
-        <p
-          className={classNames(
-            'ProductItem__button-buy',
-            { 'ProductItem__button-buy--hover': this.state.hover },
-          )}
-        >
-          Купити
-        </p>
+        <div className="ProductItem__button-box">
+          <p
+            className={classNames(
+              'ProductItem__button-buy',
+              { 'ProductItem__button-buy--hover': this.state.isHoverProductItem },
+            )}
+          >
+            Купити
+          </p>
 
-        <img
-          src="https://imgur.com/H4mv702"
-          alt="heart"
-          className={classNames(
-            'ProductItem__select',
-            { 'ProductItem__select--hover': this.state.hover },
-          )}
-        />
+          <img
+            role="presentation"
+            onClick={() => {
+              this.setState(prevState => ({
+                isSelectProductItem: !prevState.isSelectProductItem,
+              }));
+            }}
+            src="https://i.imgur.com/AYaeC3a.png"
+            alt="heart"
+            className={classNames(
+              'ProductItem__select',
+              { 'ProductItem__select--active': this.state.isSelectProductItem },
+            )}
+          />
+
+          <img
+            id="isCompareProductItem"
+            role="presentation"
+            // onClick={(event) => {
+            //   this.changeStatusHandler3(event, Object.keys(this.state)[1]);
+            // }}
+            onClick={() => {
+              this.setState(prevState => ({
+                isCompareProductItem: !prevState.isCompareProductItem,
+              }));
+            }}
+            src="https://i.imgur.com/UT6R7lx.png"
+            alt="scales"
+            className={classNames(
+              'Scales',
+              'ProductItem__select',
+              { 'ProductItem__select--active': this.state.isCompareProductItem },
+            )}
+          />
+
+        </div>
       </div>
     );
   }
 }
+
+// https://docs.google.com/forms/d/e/1FAIpQLScVVn99RHLPPXADeEH3U6zh0Ut-jmyo7DTe8QteTptb06VbxA/viewform
+
+// https://lh3.googleusercontent.com/IjpPKSJlHwjtevN0R3E_IGI5G46D2eU12QaLYv_J9MIgduMmfRdSC1zom_Fuqwz8FB0ETXHYoIHBf8hTh3oyJZS82Qis5C0iSMp7sc36FMs94gl_fxbnB_52lDv2OaLt3Q=w1712
+
+// https://www.work.ua/jobs/4620715/
+
+// https://jobs.dou.ua/companies/biscience/vacancies/208185/
