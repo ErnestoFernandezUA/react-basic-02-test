@@ -19,6 +19,8 @@ type State = {
   isHoverProductItem: boolean;
   isSelectProductItem: boolean;
   isCompareProductItem: boolean;
+  arrayOfReview: number[];
+  countReviewStar: number;
 };
 
 export class ProductItem extends React.Component<Props, State> {
@@ -26,6 +28,9 @@ export class ProductItem extends React.Component<Props, State> {
     isHoverProductItem: false,
     isSelectProductItem: false,
     isCompareProductItem: false,
+    arrayOfReview: this.props.review,
+    countReviewStar: Math.floor(this.props.review.reduce((a, b) => (a + b), 0)
+      / this.props.review.length),
   };
 
   toSeparatePrice = (price: Number) => {
@@ -59,23 +64,23 @@ export class ProductItem extends React.Component<Props, State> {
     }
 
     if (N % 10 === 2 || N % 10 === 3 || N % 10 === 4) {
-      return `${review} немає відгука`;
+      return `${review} відгука`;
     }
 
     return `${review} відгуків`;
   };
 
-  changeStatusHandler1 = () => {
-    this.setState(prevState => (
-      { isSelectProductItem: !prevState.isSelectProductItem }
-    ));
-  };
+  // changeStatusHandler1 = () => {
+  //   this.setState(prevState => (
+  //     { isSelectProductItem: !prevState.isSelectProductItem }
+  //   ));
+  // };
 
-  changeStatusHandler2 = () => {
-    this.setState(prevState => (
-      { isCompareProductItem: !prevState.isCompareProductItem }
-    ));
-  };
+  // changeStatusHandler2 = () => {
+  //   this.setState(prevState => (
+  //     { isCompareProductItem: !prevState.isCompareProductItem }
+  //   ));
+  // };
 
   // changeStatusHandler3 = (event: React.MouseEvent, id: string) => {
   //   // eslint-disable-next-line no-console
@@ -86,6 +91,16 @@ export class ProductItem extends React.Component<Props, State> {
   //     [id]: !prevState[id],
   //   }));
   // };
+
+  handlerReviewStar = (n: number) => {
+    this.state.arrayOfReview.push(n);
+
+    this.setState(prevState => ({
+      countReviewStar: Math.floor(prevState.arrayOfReview.reduce((a, b) => (a + b), 0)
+      / this.props.review.length),
+      arrayOfReview: prevState.arrayOfReview,
+    }));
+  };
 
   render() {
     const {
@@ -101,13 +116,17 @@ export class ProductItem extends React.Component<Props, State> {
       prevPrice,
     } = this.props;
 
+    const {
+      isCompareProductItem,
+      isHoverProductItem,
+      isSelectProductItem,
+      countReviewStar,
+    } = this.state;
+
     const picturePath = `${picture}`;
 
     // eslint-disable-next-line no-console
-    console.log(picturePath);
-
-    // const reviewStarCount
-    //   = Math.floor(review.reduce((a, b) => a + b, 0) / review.length);
+    console.log(this.state.countReviewStar);
 
     return (
       <div
@@ -118,7 +137,7 @@ export class ProductItem extends React.Component<Props, State> {
         <p
           className={classNames(
             'ProductItem__id',
-            { 'ProductItem__id--hover': this.state.isHoverProductItem },
+            { 'ProductItem__id--hover': isHoverProductItem },
           )}
         >
           Код товару:
@@ -129,7 +148,7 @@ export class ProductItem extends React.Component<Props, State> {
         <img
           className={classNames(
             'ProductItem__picture',
-            { 'ProductItem__picture--hover': this.state.isHoverProductItem },
+            { 'ProductItem__picture--hover': isHoverProductItem },
           )}
           // eslint-disable-next-line global-require
           src={picture}
@@ -139,7 +158,7 @@ export class ProductItem extends React.Component<Props, State> {
         <div
           className={classNames(
             'ProductItem__box-for-discount',
-            { 'ProductItem__box-for-discount--hover': this.state.isHoverProductItem },
+            { 'ProductItem__box-for-discount--hover': isHoverProductItem },
           )}
         >
           <p className="ProductItem__discount">
@@ -160,7 +179,7 @@ export class ProductItem extends React.Component<Props, State> {
         <p
           className={classNames(
             'ProductItem__description',
-            { 'ProductItem__description--hover': this.state.isHoverProductItem },
+            { 'ProductItem__description--hover': isHoverProductItem },
           )}
         >
           {description}
@@ -170,9 +189,79 @@ export class ProductItem extends React.Component<Props, State> {
           {title}
         </p>
 
-        <p className="ProductItem__review">
-          {this.reviewText(review.length)}
-        </p>
+        {/* ----------------------------------------------------*/}
+        <div className="ProductItem__review-box">
+          <div
+            role="presentation"
+            className={classNames(
+              'ProductItem__review-star',
+              { 'ProductItem__review-star--approve': countReviewStar >= 1 },
+            )}
+            onClick={() => {
+              // eslint-disable-next-line no-console
+              console.log('some1');
+
+              this.handlerReviewStar(1);
+            }}
+          />
+          <div
+            role="presentation"
+            className={classNames(
+              'ProductItem__review-star',
+              { 'ProductItem__review-star--approve': countReviewStar >= 2 },
+            )}
+            onClick={() => {
+              // eslint-disable-next-line no-console
+              console.log('some2');
+
+              this.handlerReviewStar(2);
+            }}
+          />
+          <div
+            role="presentation"
+            className={classNames(
+              'ProductItem__review-star',
+              { 'ProductItem__review-star--approve': countReviewStar >= 3 },
+            )}
+            onClick={() => {
+              // eslint-disable-next-line no-console
+              console.log('some3');
+
+              this.handlerReviewStar(3);
+            }}
+          />
+          <div
+            role="presentation"
+            className={classNames(
+              'ProductItem__review-star',
+              { 'ProductItem__review-star--approve': countReviewStar >= 4 },
+            )}
+            onClick={() => {
+              // eslint-disable-next-line no-console
+              console.log('some4');
+
+              this.handlerReviewStar(4);
+            }}
+          />
+          <div
+            role="presentation"
+            className={classNames(
+              'ProductItem__review-star',
+              { 'ProductItem__review-star--approve': countReviewStar >= 5 },
+            )}
+            onClick={() => {
+              // eslint-disable-next-line no-console
+              console.log('some5');
+
+              this.handlerReviewStar(5);
+            }}
+          />
+
+          <p className="ProductItem__review">
+            {this.reviewText(review.length)}
+          </p>
+          {/* --------------------------------------------------- */}
+        </div>
 
         <p className="ProductItem__price-title">Ціна:</p>
 
@@ -191,7 +280,7 @@ export class ProductItem extends React.Component<Props, State> {
           <p
             className={classNames(
               'ProductItem__button-buy',
-              { 'ProductItem__button-buy--hover': this.state.isHoverProductItem },
+              { 'ProductItem__button-buy--hover': isHoverProductItem },
             )}
           >
             Купити
@@ -208,7 +297,7 @@ export class ProductItem extends React.Component<Props, State> {
             alt="heart"
             className={classNames(
               'ProductItem__select',
-              { 'ProductItem__select--active': this.state.isSelectProductItem },
+              { 'ProductItem__select--active': isSelectProductItem },
             )}
           />
 
@@ -228,7 +317,7 @@ export class ProductItem extends React.Component<Props, State> {
             className={classNames(
               'Scales',
               'ProductItem__select',
-              { 'ProductItem__select--active': this.state.isCompareProductItem },
+              { 'ProductItem__select--active': isCompareProductItem },
             )}
           />
 
