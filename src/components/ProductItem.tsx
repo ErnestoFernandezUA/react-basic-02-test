@@ -53,6 +53,9 @@ export class ProductItem extends React.Component<Props, State> {
   };
 
   reviewText = (review: number) => {
+    // eslint-disable-next-line no-console
+    console.log('review = ', review);
+
     if (review === 0) {
       return 'немає відгуків';
     }
@@ -93,12 +96,12 @@ export class ProductItem extends React.Component<Props, State> {
   // };
 
   handlerReviewStar = (n: number) => {
-    this.state.arrayOfReview.push(n);
+    const newArray = [...this.state.arrayOfReview, n];
 
-    this.setState(prevState => ({
-      countReviewStar: Math.floor(prevState.arrayOfReview.reduce((a, b) => (a + b), 0)
-      / this.props.review.length),
-      arrayOfReview: prevState.arrayOfReview,
+    this.setState(() => ({
+      countReviewStar: Math.floor(newArray.reduce((a, b) => (a + b), 0)
+      / newArray.length),
+      arrayOfReview: newArray,
     }));
   };
 
@@ -110,7 +113,6 @@ export class ProductItem extends React.Component<Props, State> {
       description,
       action,
       title,
-      review,
       price,
       cashback,
       prevPrice,
@@ -121,12 +123,13 @@ export class ProductItem extends React.Component<Props, State> {
       isHoverProductItem,
       isSelectProductItem,
       countReviewStar,
+      arrayOfReview,
     } = this.state;
 
     const picturePath = `${picture}`;
 
     // eslint-disable-next-line no-console
-    console.log(this.state.countReviewStar);
+    console.log(this.state.arrayOfReview.length);
 
     return (
       <div
@@ -258,7 +261,7 @@ export class ProductItem extends React.Component<Props, State> {
           />
 
           <p className="ProductItem__review">
-            {this.reviewText(review.length)}
+            {this.reviewText(arrayOfReview.length)}
           </p>
           {/* --------------------------------------------------- */}
         </div>
