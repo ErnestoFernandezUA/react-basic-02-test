@@ -96,13 +96,10 @@ export class ProductItem extends React.Component<Props, State> {
   // };
 
   handlerReviewStar = (n: number) => {
-    const newArrayOfReview = [...this.state.arrayOfReview, n];
-    const newCountReviewStar = Math.floor(newArrayOfReview.reduce((a, b) => (a + b), 0)
-    / newArrayOfReview.length);
-
-    this.setState(() => ({
-      countReviewStar: newCountReviewStar,
-      arrayOfReview: newArrayOfReview,
+    this.setState((prevState) => ({
+      arrayOfReview: [...prevState.arrayOfReview, n],
+      countReviewStar: Math.floor([...prevState.arrayOfReview, n]
+        .reduce((a, b) => (a + b), 0) / [...prevState.arrayOfReview, n].length),
     }));
   };
 
