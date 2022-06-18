@@ -66,7 +66,15 @@ export class ProductItem extends React.Component<Props, State> {
       return `${review} відгук`;
     }
 
-    if (N % 10 === 2 || N % 10 === 3 || N % 10 === 4) {
+    if (N % 100 === 12
+      || N % 100 === 13
+      || N % 100 === 14) {
+      return `${review} відгуків`;
+    }
+
+    if (N % 10 === 2
+      || N % 10 === 3
+      || N % 10 === 4) {
       return `${review} відгука`;
     }
 
