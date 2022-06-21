@@ -285,5 +285,3 @@ export class ProductItem extends React.Component<Props, State> {
 // https://lh3.googleusercontent.com/IjpPKSJlHwjtevN0R3E_IGI5G46D2eU12QaLYv_J9MIgduMmfRdSC1zom_Fuqwz8FB0ETXHYoIHBf8hTh3oyJZS82Qis5C0iSMp7sc36FMs94gl_fxbnB_52lDv2OaLt3Q=w1712
 
 // https://www.work.ua/jobs/4620715/
-
-// https://jobs.dou.ua/companies/biscience/vacancies/208185/
