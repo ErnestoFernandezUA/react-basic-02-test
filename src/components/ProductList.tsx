@@ -8,7 +8,7 @@ type Props = {
 };
 
 type State = {
-
+  products: Product[];
 };
 
 export class ProductList extends React.Component<Props, State> {

@@ -34,7 +34,6 @@ export class ProductItem extends React.Component<Props, State> {
   };
 
   toSeparatePrice = (price: Number) => {
-    // const reversed = price.toString().split('').reverse();
     const reversed = price.toString();
     const lengthOfReversed = reversed.length;
     let result = '';
@@ -53,9 +52,6 @@ export class ProductItem extends React.Component<Props, State> {
   };
 
   reviewText = (review: number) => {
-    // eslint-disable-next-line no-console
-    console.log('review = ', review);
-
     if (review === 0) {
       return 'немає відгуків';
     }
@@ -76,28 +72,6 @@ export class ProductItem extends React.Component<Props, State> {
 
     return `${review} відгуків`;
   };
-
-  // changeStatusHandler1 = () => {
-  //   this.setState(prevState => (
-  //     { isSelectProductItem: !prevState.isSelectProductItem }
-  //   ));
-  // };
-
-  // changeStatusHandler2 = () => {
-  //   this.setState(prevState => (
-  //     { isCompareProductItem: !prevState.isCompareProductItem }
-  //   ));
-  // };
-
-  // changeStatusHandler3 = (event: React.MouseEvent, id: string) => {
-  //   // eslint-disable-next-line no-console
-  //   console.log(event.target);
-
-  //   this.setState(prevState => ({
-  //     ...prevState,
-  //     [id]: !prevState[id],
-  //   }));
-  // };
 
   handlerReviewStar = (n: number) => {
     this.setState((prevState) => ({
@@ -128,11 +102,6 @@ export class ProductItem extends React.Component<Props, State> {
       arrayOfReview,
     } = this.state;
 
-    const picturePath = `${picture}`;
-
-    // eslint-disable-next-line no-console
-    console.log(this.state.arrayOfReview.length);
-
     return (
       <div
         className="ProductItem"
@@ -155,9 +124,8 @@ export class ProductItem extends React.Component<Props, State> {
             'ProductItem__picture',
             { 'ProductItem__picture--hover': isHoverProductItem },
           )}
-          // eslint-disable-next-line global-require
           src={picture}
-          alt={picturePath}
+          alt={picture}
         />
 
         <div
@@ -194,7 +162,6 @@ export class ProductItem extends React.Component<Props, State> {
           {title}
         </p>
 
-        {/* ----------------------------------------------------*/}
         <div className="ProductItem__review-box">
           <div
             role="presentation"
@@ -203,9 +170,6 @@ export class ProductItem extends React.Component<Props, State> {
               { 'ProductItem__review-star--approve': countReviewStar >= 1 },
             )}
             onClick={() => {
-              // eslint-disable-next-line no-console
-              console.log('some1');
-
               this.handlerReviewStar(1);
             }}
           />
@@ -216,9 +180,6 @@ export class ProductItem extends React.Component<Props, State> {
               { 'ProductItem__review-star--approve': countReviewStar >= 2 },
             )}
             onClick={() => {
-              // eslint-disable-next-line no-console
-              console.log('some2');
-
               this.handlerReviewStar(2);
             }}
           />
@@ -229,9 +190,6 @@ export class ProductItem extends React.Component<Props, State> {
               { 'ProductItem__review-star--approve': countReviewStar >= 3 },
             )}
             onClick={() => {
-              // eslint-disable-next-line no-console
-              console.log('some3');
-
               this.handlerReviewStar(3);
             }}
           />
@@ -242,9 +200,6 @@ export class ProductItem extends React.Component<Props, State> {
               { 'ProductItem__review-star--approve': countReviewStar >= 4 },
             )}
             onClick={() => {
-              // eslint-disable-next-line no-console
-              console.log('some4');
-
               this.handlerReviewStar(4);
             }}
           />
@@ -255,9 +210,6 @@ export class ProductItem extends React.Component<Props, State> {
               { 'ProductItem__review-star--approve': countReviewStar >= 5 },
             )}
             onClick={() => {
-              // eslint-disable-next-line no-console
-              console.log('some5');
-
               this.handlerReviewStar(5);
             }}
           />
@@ -265,7 +217,6 @@ export class ProductItem extends React.Component<Props, State> {
           <p className="ProductItem__review">
             {this.reviewText(arrayOfReview.length)}
           </p>
-          {/* --------------------------------------------------- */}
         </div>
 
         <p className="ProductItem__price-title">Ціна:</p>
@@ -309,9 +260,6 @@ export class ProductItem extends React.Component<Props, State> {
           <img
             id="isCompareProductItem"
             role="presentation"
-            // onClick={(event) => {
-            //   this.changeStatusHandler3(event, Object.keys(this.state)[1]);
-            // }}
             onClick={() => {
               this.setState(prevState => ({
                 isCompareProductItem: !prevState.isCompareProductItem,
